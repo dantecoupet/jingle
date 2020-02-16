@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['144.174.212.122','localhost','10.136.238.246']
 # Application definition
 
 INSTALLED_APPS = [
+    'jingle.apps.JingleConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
