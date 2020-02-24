@@ -6,8 +6,8 @@ from . import master_results
 
 def jingle_home(request):    
 
-    spotifyDict = master_results.get_master("Hot shower")
-    print(spotifyDict["artist_name"])
+    spotifyDict = master_results.get_master("juicy")
+    #print(spotifyDict)
     
     context = {
         'song': spotifyDict
