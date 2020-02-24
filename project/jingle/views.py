@@ -6,11 +6,13 @@ from . import master_results
 
 def jingle_home(request):    
 
+    #calls master response function, plugging in song name as parameter
     spotifyDict = master_results.get_master("juicy")
-    #print(spotifyDict)
     
+    #wraps dictionary for the HTML page
     context = {
         'song': spotifyDict
     }
-
+    
+    #calls HTML page and passes in wrapped response
     return render(request, 'jingle/index.html',context)
