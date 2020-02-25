@@ -1,17 +1,36 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from . import spotifyxx, genius
+from .forms import SongForm
+from django.views.generic import TemplateView
 
 # Create your views here.
 
+name = "mac miller"
+songtitle = "circles"
+
+artistInfo = spotifyxx.get_artist(name)
+artistName = artistInfo['name']
+artistImg = artistInfo['images'][2]['url']
+image = artistImg
+
+lyric = genius.get_song_info(songtitle,name)
+print(lyric)
+info  = genius.scrap_song_url(lyric)
+print(info)
+
 posts = [
-    {'songName': 'yummy'},
-    {'songName': 'the box'},
-    {'songName': 'mo bamba'},
-    {'songName': 'sicko mode'}
+    {'artistName': artistName},
+    {'img': image},
+    {'info': info}
 ]
 
-def jingle_home(request):
+def home(request):
     context = {
         'posts': posts
     }
-    return render(request, 'jingle/index.html', context)
+    return render(request,'jingle/home.html',context)
+
+def get_song(request):
+    return render(request, 'jingle/song.html')
+

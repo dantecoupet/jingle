@@ -1,0 +1,18 @@
+body {
+    background: paleturquoise;
+}
+
+.title {
+    text-align: center;
+    margin-top: 200px;
+}
+
+.search-bar {
+    margin: 50px;
+    text-align: center;
+}
+
+.img-logo {
+    text-align: center;
+    display: block;
+}
