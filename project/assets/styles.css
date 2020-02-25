@@ -1,18 +1,26 @@
-body {
-    background: paleturquoise;
-}
 
 .title {
     text-align: center;
-    margin-top: 200px;
+    margin-top: 10px;
+    font-size: 150px;
+    color: burlywood;
+}
+
+body {
+    background-image: url('resize.gif');
+    background-repeat: repeat;
 }
 
 .search-bar {
-    margin: 50px;
     text-align: center;
 }
 
-.img-logo {
+.logo {
     text-align: center;
-    display: block;
+}
+
+.yoda {
+    max-width: 200px;
+    max-height: 200px;
+    margin-top: 100px;
 }
