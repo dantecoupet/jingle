@@ -1,8 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from . import spotifyxx, genius
-from .forms import SongForm
-from django.views.generic import TemplateView
 
 # Create your views here.
 
