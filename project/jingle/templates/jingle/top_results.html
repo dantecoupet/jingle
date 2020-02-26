@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Jingle Search Results</title>
+	</head>
+	<body>
+		{% for song in songs %}
+			{% if song.song_cover_url != "" %}
+			<img src="{{ song.song_cover_url }}" height="120" width="120">
+			{% endif %}
+			{% if song.artist_name != "" %}
+			<h1>Artist: {{ song.artist_name }}</h1>
+			{% endif %}
+			{% if song.song_name != "" %}
+			<h1>Song: {{ song.song_name }}</h1>
+			{% endif %}
+		{% endfor %}
+	</body>
+</html>
