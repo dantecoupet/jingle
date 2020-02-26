@@ -17,7 +17,6 @@ def genius_results(song_title, artist_name):
 	search_url = base_url + '/search'
 	data = {'q': song_title + ' ' + artist_name}
 	response = requests.get(search_url, data=data, headers=headers)
-
 	json = response.json()
 	remote_song_info = None
 	#cycles throught results to find song

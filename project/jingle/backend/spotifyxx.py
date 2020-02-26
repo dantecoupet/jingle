@@ -29,6 +29,7 @@ def spotify_results(name):
 		"release_date":"",
 		"spotify_song_link":"",
 		"genres":"",
+		"song_name_short":"",
 		"errors":""
 	}	
 	
@@ -55,6 +56,8 @@ def spotify_results(name):
 			tempName = tempName[0:start-1]
 		tempName = tempName.translate(str.maketrans('','',string.punctuation))
 		if name == tempName:
+			spotifyDict["song_name_short"] = tempName
+			print(spotifyDict["song_name_short"])
 			final = 0
 			break
 		tempInt += 1
@@ -133,3 +136,57 @@ def spotify_results(name):
 	
 	#returns dictionary of details
 	return spotifyDict
+	
+	
+def spotify_top_search(name):
+	
+	#creates spotify object
+	sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
+
+	#creates dictionary for each top element, and the list that stores them
+	top_search_list = []
+	#gets results
+	API_results = sp.search(q='track:' + name, type='track')
+	#returns error if no results are shown
+	if len(API_results['tracks']['items']) == 0:
+		spotifyDict["errors"] = "No Spotify Results"
+		return top_search_list
+		
+	#processes name input, removes content inside paranthesis, removes puncuation
+	name = name.lower()
+	start = name.find( '(' )
+	if start != -1:
+		tempName = tempName[0:start-1]
+	name = name.translate(str.maketrans('','',string.punctuation))
+	
+	tempInt = 0
+	numList = []
+	
+	#adds the indexs of song with the exact name
+	for i in API_results['tracks']['items']:
+		tempName = i["name"].lower()
+		start = tempName.find( '(' )
+		if start != -1:
+			tempName = tempName[0:start-1]
+		tempName = tempName.translate(str.maketrans('','',string.punctuation))
+		if name == tempName:
+			numList.append(tempInt)
+		tempInt += 1
+	#adds rest f indexs to the list	
+	tempInt = 0	
+	for i in API_results['tracks']['items']:
+		if numList.count(tempInt) == 0:
+			numList.append(tempInt)
+		tempInt += 1
+
+	#goes through the list of numbers and retrieves data, then adds dictionaries to list
+	for i in numList:
+		top_search_dict = {}
+		temp_results = API_results['tracks']['items'][i]
+		top_search_dict["artist_name"] = temp_results["artists"][0]["name"]
+		top_search_dict["song_name"] = temp_results["name"]
+		top_search_dict["song_cover_url"] = temp_results["album"]["images"][0]["url"]
+		top_search_dict["spotify_id"] = temp_results["id"]
+		top_search_list.append(top_search_dict)
+
+	return top_search_list

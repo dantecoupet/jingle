@@ -14,11 +14,13 @@ masterDict = {
 		"release_date":"",
 		"spotify_song_link":"",
 		"genres":"",
+		"song_name_short":"",
 		#genius API
 		"lyrics":"",
 		"genius_page_views":"",
 		"genius_song_link":"",
 		"errors":""
+		
 	}
 
 
@@ -36,17 +38,22 @@ def get_master(name):
 	masterDict["release_date"] = spotifyResults["release_date"]
 	masterDict["spotify_song_link"] = spotifyResults["spotify_song_link"]
 	masterDict["genres"] = spotifyResults["genres"]
+	masterDict["song_name_short"] = spotifyResults["song_name_short"]
 	masterDict["errors"] = spotifyResults["errors"]
 	
 	#calls the genius function, passing in song/artist name from spotify
 	if masterDict["errors"] == "":
-		geniusResults = geniusxx.genius_results(masterDict["song_name"], masterDict["artist_name"])
+		geniusResults = geniusxx.genius_results(masterDict["song_name_short"], masterDict["artist_name"])
 		masterDict["lyrics"] = geniusResults["lyrics"]
 		masterDict["genius_page_views"] = geniusResults["genius_page_views"]
 		masterDict["genius_song_link"] = geniusResults["genius_song_link"]
 		masterDict["errors"] = geniusResults["errors"]
+		
+
 
 	return masterDict
 	
+def get_top_search(name):
+	return spotifyxx.spotify_top_search(name)
 	
 	
