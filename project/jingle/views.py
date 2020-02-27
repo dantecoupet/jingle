@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from . import spotifyxx, genius
 
+from .forms import SongForm
+
 # Create your views here.
 
 name = "mac miller"
@@ -30,5 +32,22 @@ def home(request):
     return render(request,'jingle/home.html',context)
 
 def get_song(request):
-    return render(request, 'jingle/song.html')
+    #if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = SongForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            text = form.cleaned_data
+            return HttpResponseRedirect('jingle/song.html')
 
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = SongForm()
+
+    args = {
+        'text': text,
+        'form': form,
+    }
+
+    return render(request, 'jingle/song.html')

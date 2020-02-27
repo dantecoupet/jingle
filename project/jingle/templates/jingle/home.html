@@ -23,10 +23,15 @@
             <img src="{% static 'yodaicon.jpg' %}" class="yoda">
             <h1 class="title"><b>jingle</b></h1>
             <p class="search-bar">
-                <form>
+                <!-- <form>
                     <div class="form-group">
                         <input type="text" size="75" placeholder="enter any song (i.e Sicko Mode or Mo Bamba)"></input>
                     </div>
+                </form> -->
+                <form action="/song/" method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                    <input type="submit" value="Submit">
                 </form>
             </p>
         </div>

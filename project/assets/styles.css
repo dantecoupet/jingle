@@ -1,4 +1,4 @@
-
+{% load static %}
 .title {
     text-align: center;
     margin-top: 10px;
@@ -7,7 +7,7 @@
 }
 
 body {
-    background-image: url('resize.gif');
+    background-image: url('yodaicon.jpg');
     background-repeat: repeat;
 }
 
