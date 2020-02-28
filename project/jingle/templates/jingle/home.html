@@ -20,7 +20,6 @@
         <![endif]-->
 
         <div class="container logo">
-            <img src="{% static 'yodaicon.jpg' %}" class="yoda">
             <h1 class="title"><b>jingle</b></h1>
             <p class="search-bar">
                 <!-- <form>
@@ -28,10 +27,11 @@
                         <input type="text" size="75" placeholder="enter any song (i.e Sicko Mode or Mo Bamba)"></input>
                     </div>
                 </form> -->
-                <form action="/song/" method="post">
+                <form action="" method="post">
                     {% csrf_token %}
-                    {{ form }}
-                    <input type="submit" value="Submit">
+                    {{ form.as_p }}
+                    <!-- <input type="text" name="songName"> -->
+                    <!-- <input type="submit" name="song" value="Submit"> -->
                 </form>
             </p>
         </div>

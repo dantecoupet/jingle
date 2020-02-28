@@ -1,14 +1,12 @@
-{% load static %}
 .title {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 90px;
     font-size: 150px;
     color: burlywood;
 }
 
-body {
-    background-image: url('yodaicon.jpg');
-    background-repeat: repeat;
+input {
+    width: 50%;
 }
 
 .search-bar {
