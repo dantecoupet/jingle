@@ -4,21 +4,6 @@ from . import spotifyxx, genius
 
 from .forms import SongForm
 
-# Create your views here.
-
-name = "mac miller"
-songtitle = "circles"
-
-temp = spotifyxx.find_song('the box')
-
-lyric = genius.get_song_info(songtitle,name)
-info  = genius.scrap_song_url(lyric)
-
-posts = [
-    # {'artistName': artistName},
-    # {'img': image},
-    # {'info': info}
-]
 
 #renders the home page and form
 def home(request):
@@ -31,21 +16,27 @@ def home(request):
         if form.is_valid():
             text = form.cleaned_data
             songInfo = spotifyxx.find_song(text['songTitle'])
+            print(songInfo)
 
             track = songInfo['name']
-            artist = songInfo['artists']
-            artistname = artist['external_urls']['name']
-            print(artistname)
-            allinfo = songInfo
+            artist = songInfo['artists'][0]['name']
+            img = songInfo['album']['images'][0]['url']
+            albumName = songInfo['album']['name']
+            duration = songInfo['duration_ms']
+            duration = (duration/1000)/60
+            preview = songInfo['preview_url']
 
-            details = [
-                {'track': track},
-                {'artist': artist},
-                {'all': allinfo},
-            ]
+            details = {
+                "artist":artist,
+                "track":track,
+                "imgSrc":img,
+                "album":albumName,
+                "duration":duration,
+                "preview":preview,
+            }
 
             context = {
-                'details': details,
+                'song': details,
             }
             return render(request,'jingle/song.html',context)
 
@@ -55,9 +46,7 @@ def home(request):
 
     args = {
         'form': form,
-        'posts': posts,
     }
-    
 
     return render(request, 'jingle/home.html', args)
 
