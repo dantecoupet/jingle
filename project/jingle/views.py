@@ -1,23 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from . import spotifyxx, genius
-
 from .forms import SongForm
 
-
-#renders the home page and form
 def home(request):
-
-    #if this is a POST request we need to process the form data
     if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
         form = SongForm(request.POST)
-        # check whether it's valid:
         if form.is_valid():
-            text = form.cleaned_data
-            songInfo = spotifyxx.find_song(text['songTitle'])
-            print(songInfo)
+            text = form.cleaned_data['songTitle']
+            form = SongForm()
 
+            songInfo = spotifyxx.find_song(text)
             track = songInfo['name']
             artist = songInfo['artists'][0]['name']
             img = songInfo['album']['images'][0]['url']
@@ -37,49 +30,45 @@ def home(request):
 
             context = {
                 'song': details,
+                'form':form,
             }
-            return render(request,'jingle/song.html',context)
-
-    # if a GET (or any other method) we'll create a blank form
+            #return render(request,'jingle/results.html',context)
+            return render(request,'jingle/results.html',context)
     else:
         form = SongForm()
 
-    args = {
-        'form': form,
-    }
+    return render(request, 'jingle/home.html', {'form':form})
 
-    return render(request, 'jingle/home.html', args)
+def results(request):
+    if request.method == 'POST':
+        form = SongForm(request.POST)
+        if form.is_valid():
+            song = form.cleaned_data['songTitle']
+            form = SongForm()
 
-#this function 
-def get_song(request):
-    return render(request,'jingle/song.html')
+            songInfo = spotifyxx.find_song(song)
+            track = songInfo['name']
+            artist = songInfo['artists'][0]['name']
+            img = songInfo['album']['images'][0]['url']
+            albumName = songInfo['album']['name']
+            duration = songInfo['duration_ms']
+            duration = (duration/1000)/60
+            preview = songInfo['preview_url']
 
-# def get_song(request):
-#     theName = request.POST
-#     print(theName['songName'])
-#     artistInfo = spotifyxx.get_artist(theName['songName'])
-#     artistName = artistInfo['name']
-#     artistImg = artistInfo['images'][2]['url']
-#     image = artistImg
+            details = {
+                "artist":artist,
+                "track":track,
+                "imgSrc":img,
+                "album":albumName,
+                "duration":duration,
+                "preview":preview,
+            }
 
-#     data = [
-#         {'artName': artistName},
-#         {'img': image},
-#     ]
-#     #if this is a POST request we need to process the form data
-#     if request.method == 'POST':
-#         # create a form instance and populate it with data from the request:
-#         form = SongForm(request.POST)
-#         # check whether it's valid:
-#         # if form.is_valid():
+            context = {
+                'song': details,
+                'form':form,
+            }
+            #return render(request,'jingle/results.html',context)
+            return render(request,'jingle/results.html',context)
 
-#     # if a GET (or any other method) we'll create a blank form
-#     else:
-#         form = SongForm()
-
-#     args = {
-#         'form': form,
-#         'data': data,
-#     }
-
-#     return render(request, 'jingle/song.html', args)
+    return render(request,'jingle/results.html')

@@ -1,3 +1,8 @@
+<html>
+    
+</html>
+
+
 {% load static %}
 
 <!DOCTYPE html>
@@ -19,14 +24,21 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        
+        <center>
+            <img src="{{ song.imgSrc }}" width="400" height="400">
+            <h1>Track: {{ song.track }}</h1>
+            <h1>Artist: {{ song.artist }}</h1>
+            <h3>Duration(approximate): {{ song.duration }}</h3>
+            <h3><audio controls><source src="{{ song.preview }}" type="audio/ogg"></audio></h3>
+        </center>
 
         <div class="container logo">
-            <h1 class="title"><b>jingle</b></h1>
             <p class="search-bar">
                 <form method="POST">
                     {% csrf_token %}
                     {{ form.as_p }}
+                    <p>search for another song: </p>
+                    
                 </form>
             </p>
         </div>
@@ -36,3 +48,4 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     </body>
 </html>
+
