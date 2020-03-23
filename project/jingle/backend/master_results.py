@@ -28,7 +28,7 @@ masterDict = {
 def get_master(name):
 	
 	#calls the spotify function and passes in name of song
-	spotifyResults = spotifyxx.spotify_results(name)
+	spotifyResults = spotifyxx.return_song(name)
 	masterDict["artist_name"] = spotifyResults["artist_name"]
 	masterDict["song_name"] = spotifyResults["song_name"]
 	masterDict["album_name"] = spotifyResults["album_name"]

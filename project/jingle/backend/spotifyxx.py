@@ -57,7 +57,6 @@ def spotify_results(name):
 		tempName = tempName.translate(str.maketrans('','',string.punctuation))
 		if name == tempName:
 			spotifyDict["song_name_short"] = tempName
-			print(spotifyDict["song_name_short"])
 			final = 0
 			break
 		tempInt += 1
@@ -190,3 +189,90 @@ def spotify_top_search(name):
 		top_search_list.append(top_search_dict)
 
 	return top_search_list
+	
+def return_song(spotify_id):
+	sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
+
+	track = sp.track(spotify_id)
+
+	spotifyDict = {
+			"artist_name":"",
+			"song_name":"",
+			"album_name":"",
+			"song_cover_url":"",
+			"song_duration":"",
+			"artist_additional_names":"",
+			"release_date":"",
+			"spotify_song_link":"",
+			"genres":"",
+			"song_name_short":"",
+			"errors":""
+		}
+	
+	spotifyDict["artist_name"] = track["artists"][0]["name"]
+	spotifyDict["song_name"] = track["name"]
+	spotifyDict["album_name"] = track["album"]["name"]
+	spotifyDict["song_cover_url"] = track["album"]["images"][0]["url"]
+	
+	#converts the duration in ms to hours, mins, and secs
+	duration = track["duration_ms"]
+	seconds = minutes = hours = 0
+	while duration > 1000:
+		seconds += 1
+		duration -= 1000
+	while seconds > 60:
+		minutes += 1
+		seconds -= 60
+	while minutes > 60:
+		hours += 1
+		minutes -= 60
+	if hours > 1:
+		spotifyDict["song_duration"] += str(hours) + " Hours "
+	if hours == 1:
+		spotifyDict["song_duration"] += str(hours) + " Hour "		
+	if minutes > 1:
+		spotifyDict["song_duration"] += str(minutes) + " Minutes "
+	if minutes == 1:
+		spotifyDict["song_duration"] += str(minutes) + " Minute "			
+	if seconds > 1:
+		spotifyDict["song_duration"] += str(seconds) + " Seconds "
+	if seconds == 1:
+		spotifyDict["song_duration"] += str(seconds) + " Second "
+		
+	#assigns more dictionary variables
+	spotifyDict["release_date"] = track["album"]["release_date"]
+	spotifyDict["spotify_song_link"] = track["external_urls"]["spotify"]
+		
+	#this loop adds all the featured artists to dictionary in one string
+	tempInt = 0
+	for i in track["artists"]:
+		if tempInt == 1:
+			spotifyDict["artist_additional_names"] += i["name"]
+		if tempInt > 1:
+			spotifyDict["artist_additional_names"] += ", "
+			spotifyDict["artist_additional_names"] += i["name"] 
+		tempInt += 1
+			
+	album = sp.album(track["album"]["uri"])
+	artist = sp.artist(track["artists"][0]["uri"])
+		
+	#generates a list of genres based on the song genres and artist genres
+	genreList = []
+	tempInt = 0
+		
+	for i in album["genres"]:
+		if genreList.count(i) == 0:
+			genreList.append(i.capitalize())	
+	for i in artist["genres"]:
+		if genreList.count(i) == 0:
+			genreList.append(i.capitalize())
+	for i in genreList:
+		if tempInt == 0:
+			spotifyDict["genres"] += i
+		else:
+			spotifyDict["genres"] += ", "
+			spotifyDict["genres"] += i
+		tempInt += 1
+		
+	#returns dictionary of details
+	return spotifyDict
