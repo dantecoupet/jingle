@@ -1,0 +1,41 @@
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	top: 0;
+}
+
+li {
+	float: left;
+	border-right: 3px solid lightseagreen;
+}
+
+li a {
+	font-family: Tahoma, Geneva, sans-serif;
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+	background-color: #111;
+}
+.active {
+	background-color: #4CAF50;
+}
+
+div{
+	padding-top: 20px;
+}
+
+body{
+	background:lightseagreen;
+	text-align:center;
+}
