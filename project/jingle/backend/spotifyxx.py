@@ -274,5 +274,12 @@ def return_song(spotify_id):
 			spotifyDict["genres"] += i
 		tempInt += 1
 		
+	tempName = track["name"].lower()
+	start = tempName.find( '(' )
+	if start != -1:
+		tempName = tempName[0:start-1]
+	tempName = tempName.translate(str.maketrans('','',string.punctuation))
+	spotifyDict["song_name_short"] = tempName
+		
 	#returns dictionary of details
 	return spotifyDict
