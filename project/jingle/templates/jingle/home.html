@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
-	<body>
-		<form method="post">
-			<label for="your_name">Song name: </label>
-			<input id="your_name" type="text" name="your_name" value="{{ current_name }}">
-			<input type="submit" value="OK">
-		</form>
-	</body>
+
+	{% load static %}
+		<title>Jingle Home</title>
+	
+		<link rel="stylesheet" type="text/css" href="{% static 'jingle/navBar.css' %}">
+		<ul>
+			<li><a href="/">Home</a></li>
+			<li><a href="">Top 50</a></li>
+			<li><a href="">About</a></li>
+		</ul>
+		
+	<link rel="stylesheet" type="text/css" href="{% static 'jingle/homePage.css' %}">
+	
+	<div></div>
+
+	<form method="post">
+		{% csrf_token %}
+		{{ form }}
+		<input type="text" name="song" placeholder="Enter a Song Name...">
+	</form>
+	
 </html>

@@ -1,19 +1,42 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Jingle Search Results</title>
+		<title>Search Results</title>
 	</head>
-	<body>
+	
+	{% load static %}		
+	<link rel="stylesheet" type="text/css" href="{% static 'jingle/navBar.css' %}">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="">Top 50</a></li>
+		<li><a href="">About</a></li>
+	</ul>
+	
+	
+	<link rel="stylesheet" type="text/css" href="{% static 'jingle/searchResults.css' %}">
+	
+	<div></div>
+
+	<table>
 		{% for song in songs %}
-			{% if song.song_cover_url != "" %}
+		<tr type="button" action="/">
+			<td>{% if song.song_cover_url != "" %}
 			<img src="{{ song.song_cover_url }}" height="120" width="120">
-			{% endif %}
-			{% if song.artist_name != "" %}
-			<h1>Artist: {{ song.artist_name }}</h1>
-			{% endif %}
-			{% if song.song_name != "" %}
-			<h1>Song: {{ song.song_name }}</h1>
-			{% endif %}
+			{% endif %}</td>
+			<td>{% if song.artist_name != "" %}
+			Artist: {{ song.artist_name }}
+			{% endif %}</td>
+			<td>{% if song.song_name != "" %}
+			Song: {{ song.song_name }}
+			{% endif %}</td>
+			<td>
+				<form action='/song/{{ song.spotify_id }}/' method="post">
+					{% csrf_token %}
+					{{ form }}
+					<input type="submit" name="resultsSelection"  value="Select">
+				</form>
+			</td>
+		</tr>
 		{% endfor %}
-	</body>
+	</table>
 </html>

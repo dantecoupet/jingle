@@ -3,8 +3,19 @@
 
 <html>
 	
+	{% load static %}
+
+	
+	
+	<link rel="stylesheet" type="text/css" href="{% static 'jingle/navBar.css' %}">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="">Top 50</a></li>
+		<li><a href="">About</a></li>
+	</ul>
+	
 	<head>
-		<title>Jingle</title>
+		<title>{{ song.song_name }}</title>
 	</head>
 	
 	<body>
@@ -42,7 +53,7 @@
 			<a href="{{ song.spotify_song_link }}">{{ song.spotify_song_link }}</a>
 			{% endif %}
 			{% if song.lyrics != "" %}
-			<p>Lyrics: {{ song.lyrics }}</p>
+			<p>Lyrics: {{ song.lyrics|linebreaks }}</p>
 			{% endif %}
 			{% if song.genius_page_views != "" %}
 			<h1>Genius Page Views: {{ song.genius_page_views }}</h1>
