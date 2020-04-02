@@ -1,5 +1,4 @@
-from . import spotifyxx
-from . import geniusxx
+from . import spotifyxx, geniusxx, youtubexx
 
 
 #master dictionary that will be returned
@@ -15,10 +14,13 @@ masterDict = {
 		"spotify_song_link":"",
 		"genres":"",
 		"song_name_short":"",
+		"preview":"",
 		#genius API
 		"lyrics":"",
 		"genius_page_views":"",
 		"genius_song_link":"",
+		#youtube API
+		"videos":"",
 		"errors":""
 		
 	}
@@ -39,6 +41,7 @@ def get_master(name):
 	masterDict["spotify_song_link"] = spotifyResults["spotify_song_link"]
 	masterDict["genres"] = spotifyResults["genres"]
 	masterDict["song_name_short"] = spotifyResults["song_name_short"]
+	masterDict["preview"] = spotifyResults["preview"]
 	masterDict["errors"] = spotifyResults["errors"]
 	
 	#calls the genius function, passing in song/artist name from spotify
@@ -49,7 +52,8 @@ def get_master(name):
 		masterDict["genius_song_link"] = geniusResults["genius_song_link"]
 		masterDict["errors"] = geniusResults["errors"]
 		
-
+		youtubeResults = youtubexx.get_youtube(masterDict["song_name_short"], masterDict["artist_name"])
+		masterDict["videos"] = youtubeResults
 
 	return masterDict
 	

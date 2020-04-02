@@ -142,13 +142,13 @@ def spotify_top_search(name):
 	#creates spotify object
 	sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
 
+	spotifyDict = {}
 	#creates dictionary for each top element, and the list that stores them
 	top_search_list = []
 	#gets results
 	API_results = sp.search(q='track:' + name, type='track')
 	#returns error if no results are shown
 	if len(API_results['tracks']['items']) == 0:
-		spotifyDict["errors"] = "No Spotify Results"
 		return top_search_list
 		
 	#processes name input, removes content inside paranthesis, removes puncuation
@@ -206,6 +206,7 @@ def return_song(spotify_id):
 			"spotify_song_link":"",
 			"genres":"",
 			"song_name_short":"",
+			"preview":"",
 			"errors":""
 		}
 	
@@ -213,6 +214,8 @@ def return_song(spotify_id):
 	spotifyDict["song_name"] = track["name"]
 	spotifyDict["album_name"] = track["album"]["name"]
 	spotifyDict["song_cover_url"] = track["album"]["images"][0]["url"]
+	spotifyDict["preview"] = track["preview_url"]
+	
 	
 	#converts the duration in ms to hours, mins, and secs
 	duration = track["duration_ms"]
