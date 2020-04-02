@@ -1,5 +1,5 @@
 /*Search Bar CSS*/
-input{
+input {
 	font-family: Tahoma, Geneva, sans-serif;
 	outline: none;
 	width:50px;
@@ -21,8 +21,4 @@ input:hover{
 	width:350px;
 	padding:0px 20px 0px 45px;
 	color:#333;
-}
-
-div{
-	padding-top: 250px;
 }

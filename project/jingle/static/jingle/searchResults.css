@@ -1,17 +1,12 @@
-table {
-	border-collapse: collapse;
-	width: 100%;
+div.result-row:hover {
+	background-color: #FFD6D7;
 }
 
-th, td {
-	padding: 8px;
-	text-align: left;
-	border-bottom: 1px solid #ddd;
+.result-row {
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
-tr:hover {background-color:#f5f5f5;}
-
-div{
-	padding-top: 20px;
+.result-img {
+	margin: 10px;
 }
-
