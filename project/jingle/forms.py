@@ -5,3 +5,6 @@ class SearchForm(forms.Form):
 	
 class ResultsForm(forms.Form):
 	spotify_id = forms.CharField(label = 'resultsSelection', max_length = 100)
+
+class FeedbackForm(forms.Form):
+	feedback_entry = forms.CharField(widget=forms.Textarea)
