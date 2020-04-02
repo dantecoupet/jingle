@@ -32,12 +32,27 @@
             <h3><audio controls><source src="{{ song.preview }}" type="audio/ogg"></audio></h3>
         </center>
 
-        <center>
-        <iframe id="player" type="text/html" width="640" height="390"
-        src="https://www.youtube.com/embed?listType=search&list={{ song.track }}"
-        frameborder="0">
-        </iframe>
-        </center>
+          <div class="album py-5 bg-light">
+            <div class="container">
+              <div class="row">
+                {% for video in videos %}
+                <div class="col-md-4">
+                  <div class="card mb-4 shadow-sm">
+                    <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ video.thumbnail }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"></img>
+                    <div class="card-body">
+                      <p class="card-text">{{ video.title }}</p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                          <a type="button" href="{{ video.url }}" class="btn btn-sm btn-outline-secondary">View</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>        
 
         <div class="container logo">
             <p class="search-bar">
