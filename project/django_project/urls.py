@@ -20,3 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('jingle.urls')),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
