@@ -9,6 +9,7 @@
 	<ul>
 		<li><a href="/">Home</a></li>
 		<li><a href="">Top 50</a></li>
+		<li><a href="/feedback/">Feedback</a></li>
 		<li><a href="">About</a></li>
 	</ul>
 	
@@ -19,7 +20,7 @@
 
 	<table>
 		{% for song in songs %}
-		<tr type="button" action="/">
+		<tr>
 			<td>{% if song.song_cover_url != "" %}
 			<img src="{{ song.song_cover_url }}" height="120" width="120">
 			{% endif %}</td>
