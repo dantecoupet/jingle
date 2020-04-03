@@ -36,7 +36,7 @@ def jingle_results(request, spotify_id):
     search_params = {
         'part': 'snippet',
         'q': spotifyDict['song_name'],
-        'key': 'AIzaSyD-ALkXytH1CKrsYSyzTSVTzt8c3PeazM4',
+        'key': 'AIzaSyDeumt0L9rYG89HZmc7bXU4hY1wgAG0Vho',
         'maxResults': 3,
         'type': 'video'
     }
@@ -53,7 +53,7 @@ def jingle_results(request, spotify_id):
         video_ids.append(result['id']['videoId'])
 
     video_params = {
-        'key': 'AIzaSyD-ALkXytH1CKrsYSyzTSVTzt8c3PeazM4',
+        'key': 'AIzaSyDeumt0L9rYG89HZmc7bXU4hY1wgAG0Vho',
         'part': 'snippet, contentDetails',
         'id': ','.join(video_ids)
     }
