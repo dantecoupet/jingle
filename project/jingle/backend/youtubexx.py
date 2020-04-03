@@ -4,7 +4,7 @@ def get_youtube(song, artist):
 	search_params = {
 		'part': 'snippet',
 		'q': song + ' ' + artist,
-		'key': 'AIzaSyD-ALkXytH1CKrsYSyzTSVTzt8c3PeazM4',
+		'key': 'AIzaSyDeumt0L9rYG89HZmc7bXU4hY1wgAG0Vho',
 		'maxResults': 3,
 		'type': 'video'
 	}
@@ -21,7 +21,7 @@ def get_youtube(song, artist):
 		video_ids.append(result['id']['videoId'])
 
 	video_params = {
-		'key': 'AIzaSyD-ALkXytH1CKrsYSyzTSVTzt8c3PeazM4',
+		'key': 'AIzaSyDeumt0L9rYG89HZmc7bXU4hY1wgAG0Vho',
 		'part': 'snippet, contentDetails',
 		'id': ','.join(video_ids)
 	}
