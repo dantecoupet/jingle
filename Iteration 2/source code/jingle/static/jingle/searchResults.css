@@ -1,0 +1,12 @@
+div.result-row:hover {
+	background-color: #FFD6D7;
+}
+
+.result-row {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.result-img {
+	margin: 10px;
+}
