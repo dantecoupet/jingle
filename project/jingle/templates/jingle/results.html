@@ -1,107 +1,151 @@
+{% load static %}
 <!DOCTYPE html>
-
-
-<html>
-
-	{% load static %}
-
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="{% static 'jingle/navBar.css' %}">
-	<ul>
-		<li><a href="/">Home</a></li>
-		<li><a href="">Top 50</a></li>
-		<li><a href="">About</a></li>
-	</ul>
-
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>{{ song.song_name }}</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="{% static 'jingle/styles.css' %}">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	</head>
+	<body class="custom-bg">
+		<!--[if lt IE 7]>
+			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+		<![endif]-->
 
-	<body>
-
-
-		<center>
-		<div>
-			{% if song.song_cover_url != "" %}
-			<img src="{{ song.song_cover_url }}" height="480" width="480">
-			{% endif %}
-
-			{% if song.artist_name != "" %}
-			<h1>Artist: {{ song.artist_name }}</h1>
-			{% endif %}
-			{% if song.song_name != "" %}
-			<h1>Song: {{ song.song_name }}</h1>
-			{% endif %}
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<span class="navbar-brand" href="#">jingle</span>
+			<div class="collapse navbar-collapse" id="navbarNav">
+			  <ul class="navbar-nav">
+				<li class="nav-item active">
+				  <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="#">Top 50</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="#">About</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/feedback/">Feedback</a>
+				</li>
+			  </ul>
 			</div>
-			{% if song.album_name != "" %}
-			<h1>Album Name: {{ song.album_name }}</h1>
+		  </nav>
+
+			<center>
+			{% if song.song_cover_url != "" %}
+			<img class="a" src="{{ song.song_cover_url }}" height="480" width="480" style="float:left">
 			{% endif %}
-			{% if song.song_duration != "" %}
-			<h1>Song Length: {{ song.song_duration }}</h1>
+
+			<table style="right:width:100%">
+			<tr>
+				<th><strong>About this Song</strong></th>
+			</tr>
+				{% if song.artist_name != "" %}
+				<tr><td><strong>Artist</strong></td><td>{{ song.artist_name }}</td></tr>
+				{% endif %}
+				{% if song.song_name != "" %}
+				<tr><td><strong>Song</strong></td><td>{{ song.song_name }}</td></tr>
+				{% endif %}
+				</div>
+				{% if song.album_name != "" %}
+				<tr><td><strong>Off of Album</strong></td><td>{{ song.album_name }}</td></tr>
+				{% endif %}
+				{% if song.song_duration != "" %}
+				<tr><td><strong>Duration</strong></td><td>{{ song.song_duration }}</td></tr>
+				{% endif %}
+				{% if song.artist_additional_names != "" %}
+				<tr><td><strong>Featured on this Track</strong></td><td>{{ song.artist_additional_names }}</td></tr>
+				{% endif %}
+				{% if song.release_date != "" %}
+				<tr><td><strong>Release Date</strong></td><td>{{ song.release_date }}</td></tr>
+				{% endif %}
+				{% if song.genres != "" %}
+				<tr><td><strong>Genres</strong></td><td>{{ song.genres }}</td></tr>
+				{% endif %}
+			</table>
+
+			{% if song.preview != "" %}
+			<h3 style="margin-top:10px;"><audio controls><source src="{{ song.preview }}" type="audio/ogg"></audio></h3>
 			{% endif %}
-			{% if song.artist_additional_names != "" %}
-			<h1>Features: {{ song.artist_additional_names }}</h1>
-			{% endif %}
-			{% if song.release_date != "" %}
-			<h1>Release Date: {{ song.release_date }}</h1>
-			{% endif %}
-			{% if song.genres != "" %}
-			<h1>Genres: {{ song.genres }}</h1>
-			{% endif %}
-			{% if song.spotify_song_link != "" %}
-			<a href="{{ song.spotify_song_link }}">{{ song.spotify_song_link }}</a>
-			{% endif %}
+			<p><strong>LINKS</strong></p>
+
+			<div class="boxed">
+
+				{% if song.spotify_song_link != "" %}
+				<div class="container">
+					<img src="{% static 'jingle/spotify.png' %}" width="40" height="40">
+					<p>Listen on Spotify: </p>
+					<a href="{{ song.spotify_song_link }}">{{ song.spotify_song_link }}</a>
+				</div>
+				{% endif %}
+
+				{% if song.genius_song_link != "" %}
+				<div class="container">
+					<img src="{% static 'jingle/genius.png' %}" width="40" height="40">
+					<p>Read More on Genius: </p>
+					<a href="{{ song.genius_song_link }}">{{ song.genius_song_link }}</a>
+				</div>
+				{% endif %}
+
+			</div>
+
+			</center>
+
+			<hr style="height:0px; border:2px solid #000;">
+			<center>
 			{% if song.lyrics != "" %}
-			<p>Lyrics: {{ song.lyrics|linebreaks }}</p>
+			<p style="clear:left"><strong>Lyrics:</strong> {{ song.lyrics|linebreaks }}</p>
 			{% endif %}
 			{% if song.genius_page_views != "" %}
 			<h1>Genius Page Views: {{ song.genius_page_views }}</h1>
 			{% endif %}
-			{% if song.genius_song_link != "" %}
-			<a href="{{ song.genius_song_link }}">{{ song.genius_song_link }}</a>
-			{% endif %}
 			{% if song.errors != "" %}
 			<h1>Error: {{ song.errors }}</h1>
 			{% endif %}
+			</center>
 
 
-		<hr/>
-
-		<div>
-
+		<div class="album py-5 bg-light">
+			<div class="container">
+				<div class="row text-center">
+					<div class="col-md-12 col-xs-12">
+						<h1><strong>RELATED VIDEOS</strong></h1>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					{% for video in videos %}
+					<div class="col-md-4">
+					<div class="card mb-4 shadow-sm">
+						<img class="bd-placeholder-img card-img-top" width="100%" height="225"
+							 src="{{ video.thumbnail }}" preserveAspectRatio="xMidYMid slice" focusable="false"
+							 role="img" aria-label="Placeholder: Thumbnail"></img>
+						<div class="card-body">
+						<p class="card-text">{{ video.title }}</p>
+						<div class="d-flex justify-content-between align-items-center">
+							<div class="btn-group">
+							<a type="button" href="{{ video.url }}" class="btn btn-sm btn-outline-secondary">View</a>
+							</div>
+						</div>
+						</div>
+					</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
 		</div>
-		</center>
-
-           <center>
-            <h1>RELATED VIDEOS</h1>
-        </center>
-
-       <div class="album py-5 bg-light">
-    <div class="container">
-      <div class="row">
-        {% for video in videos %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ video.thumbnail }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"></img>
-            <div class="card-body">
-              <p class="card-text">{{ video.title }}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a type="button" href="{{ video.url }}" class="btn btn-sm btn-outline-secondary">View</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div
-
-
-
+		
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	</body>
-
 </html>
 
