@@ -79,7 +79,7 @@
 			<div class="boxed">
 
 				{% if song.spotify_song_link != "" %}
-				<div class="container">
+				<div class="containerRes">
 					<img src="{% static 'jingle/spotify.png' %}" width="40" height="40">
 					<p>Listen on Spotify: </p>
 					<a href="{{ song.spotify_song_link }}">{{ song.spotify_song_link }}</a>
@@ -87,7 +87,7 @@
 				{% endif %}
 
 				{% if song.genius_song_link != "" %}
-				<div class="container">
+				<div class="containerRes">
 					<img src="{% static 'jingle/genius.png' %}" width="40" height="40">
 					<p>Read More on Genius: </p>
 					<a href="{{ song.genius_song_link }}">{{ song.genius_song_link }}</a>
