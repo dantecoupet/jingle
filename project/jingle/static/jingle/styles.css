@@ -23,6 +23,6 @@ img.a{
     margin-right: 300px;
 }
 
-.container > *{
+.containerRes > *{
     display: inline-block;
 }
