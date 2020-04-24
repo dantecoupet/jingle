@@ -115,11 +115,13 @@ def jinge_topfifty(request):
     j:int = 0
 
     for i in songfifty:
-        topfiftylist.append(master_results.get_top_search(songfifty[j]))
+        topfiftylist.append(spotifyxx.spotify_results(songfifty[j]))
+        j+=1
+
 
 
     context = {
-        'song' : topfiftylist
+        'songs' : topfiftylist
     }
 
     return render(request,'jingle/top50.html',context)
