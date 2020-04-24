@@ -24,8 +24,7 @@ def jingle_home(request):
         else:
             song = "blank"
         song = song.translate(str.maketrans('','',string.punctuation))
-        print(song)
-        urlRedirect = "/results/" + song + "/"
+        song = urllib.parse.quote(song)
         urlRedirect = urlRedirect.replace(" ","-")
         
         return HttpResponseRedirect(urlRedirect)
@@ -51,7 +50,7 @@ def jingle_results(request,spotify_id):
     
 def jingle_top_search(request,song):
     
-    song = song.replace('-',' ')
+    song = urllib.parse.unquote(song)
     
     results_list = master_results.get_top_search(song)
     print(len(results_list))
