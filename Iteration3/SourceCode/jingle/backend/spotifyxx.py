@@ -188,6 +188,7 @@ def spotify_top_search(name):
 	for i in numList:
 		top_search_dict = {}
 		temp_results = API_results['tracks']['items'][i]
+		top_search_dict["explicit"] temp_results['explicit']
 		top_search_dict["artist_name"] = temp_results["artists"][0]["name"]
 		top_search_dict["song_name"] = temp_results["name"]
 		top_search_dict["song_cover_url"] = temp_results["album"]["images"][0]["url"]
