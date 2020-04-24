@@ -44,7 +44,6 @@ def jingle_results(request,spotify_id):
         'song': spotifyDict,
         'videos': videos
     }
-    print(spotifyDict["preview"])
     #calls HTML page and passes in wrapped response
     return render(request, 'jingle/results.html',context)
     
@@ -53,7 +52,6 @@ def jingle_top_search(request,song):
     song = urllib.parse.unquote(song)
     
     results_list = master_results.get_top_search(song)
-    print(len(results_list))
     if(len(results_list) == 0):
         
         error = {
