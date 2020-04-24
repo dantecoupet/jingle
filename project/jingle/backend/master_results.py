@@ -58,8 +58,8 @@ def get_master(name):
 		masterDict["genius_song_link"] = geniusResults["genius_song_link"]
 		masterDict["errors"] = geniusResults["errors"]
 		
-		youtubeResults = youtubexx.get_youtube(masterDict["song_name_short"], masterDict["artist_name"])
-		masterDict["videos"] = youtubeResults
+		#youtubeResults = youtubexx.get_youtube(masterDict["song_name_short"], masterDict["artist_name"])
+		#masterDict["videos"] = youtubeResults
 
 	return masterDict
 	

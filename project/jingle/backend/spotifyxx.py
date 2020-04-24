@@ -26,6 +26,7 @@ def spotify_results(name):
 		"album_name":"",
 		"song_cover_url":"",
 		"song_duration":"",
+		"spotify_id":"",
 		"artist_additional_names":"",
 		"release_date":"",
 		"spotify_song_link":"",
@@ -45,6 +46,7 @@ def spotify_results(name):
 	#processes name input, removes content inside paranthesis, removes puncuation
 	name = name.lower()
 	start = name.find( '(' )
+	tempName = ""
 	if start != -1:
 		tempName = tempName[0:start-1]
 	name = name.translate(str.maketrans('','',string.punctuation))
@@ -101,6 +103,7 @@ def spotify_results(name):
 	
 	#assigns more dictionary variables
 	spotifyDict["release_date"] = API_results["album"]["release_date"]
+	spotifyDict["spotify_id"] = API_results["id"]
 	spotifyDict["spotify_song_link"] = API_results["external_urls"]["spotify"]
 	
 	#this loop adds all the featured artists to dictionary in one string
@@ -155,6 +158,7 @@ def spotify_top_search(name):
 	#processes name input, removes content inside paranthesis, removes puncuation
 	name = name.lower()
 	start = name.find( '(' )
+	tempName = ""
 	if start != -1:
 		tempName = tempName[0:start-1]
 	name = name.translate(str.maketrans('','',string.punctuation))
