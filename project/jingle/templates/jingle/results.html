@@ -71,13 +71,23 @@
 				{% endif %}
 			</table>
 
+			<div class="boxedB">
+			<p><strong>Popularity</strong></p>
+				{% if song.genius_page_views != "" %}
+				<p>Genius Page Views: {{ song.genius_page_views }}</p>
+				{% endif %}
+				{% if song.popularity != "" %}
+				<p>Spotify Popularity Rating: {{ song.popularity }}/100</p>
+				{% endif %}
+			</div>
+
 			{% if song.preview != "" %}
 			<h3 style="margin-top:10px;"><audio controls><source src="{{ song.preview }}" type="audio/ogg"></audio></h3>
 			{% endif %}
-			<p><strong>LINKS</strong></p>
 
-			<div class="boxed">
 
+			<div class="boxedA">
+				<p><strong>LINKS</strong></p>
 				{% if song.spotify_song_link != "" %}
 				<div class="containerRes">
 					<img src="{% static 'jingle/spotify.png' %}" width="40" height="40">
@@ -93,18 +103,13 @@
 					<a href="{{ song.genius_song_link }}">{{ song.genius_song_link }}</a>
 				</div>
 				{% endif %}
-
 			</div>
-
 			</center>
 
 			<hr style="height:0px; border:2px solid #000;">
 			<center>
 			{% if song.lyrics != "" %}
 			<p style="clear:left"><strong>Lyrics:</strong> {{ song.lyrics|linebreaks }}</p>
-			{% endif %}
-			{% if song.genius_page_views != "" %}
-			<h1>Genius Page Views: {{ song.genius_page_views }}</h1>
 			{% endif %}
 			{% if song.errors != "" %}
 			<h1>Error: {{ song.errors }}</h1>
@@ -148,4 +153,3 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	</body>
 </html>
-

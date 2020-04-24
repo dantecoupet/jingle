@@ -2,20 +2,20 @@
 
 
 <html>
-
+	
 	<head>
 		<title>Jingle</title>
 	</head>
-
+	
 	<body>
-
-
+		
+		
 		<center>
 		<div>
 			{% if song.song_cover_url != "" %}
 			<img src="{{ song.song_cover_url }}" height="480" width="480">
 			{% endif %}
-
+			
 			{% if song.artist_name != "" %}
 			<h1>Artist: {{ song.artist_name }}</h1>
 			{% endif %}
@@ -53,17 +53,17 @@
 			{% if song.errors != "" %}
 			<h1>Error: {{ song.errors }}</h1>
 			{% endif %}
-
-
+			
+			
 		<hr/>
-
+		
 		<div>
 
 		</div>
 		</center>
-
-
-
+		
+		
+		
 	</body>
-
+	
 </html>
