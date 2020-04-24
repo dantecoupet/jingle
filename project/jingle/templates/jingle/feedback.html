@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+	{% load static %}
+		<title>Feedback</title>
+	
+		<link rel="stylesheet" type="text/css" href="{% static 'jingle/navBar.css' %}">
+		<ul>
+			<li><a href="/">Home</a></li>
+			<li><a href="/topfifty">Top 50</a></li>
+			<li><a href="/feedback/">Feedback</a></li>
+			<li><a href="">About</a></li>
+		</ul>
+		
+	<link rel="stylesheet" type="text/css" href="{% static 'jingle/feedback.css' %}">
+	
+	<div></div>
+
+	<form method="post">
+		{% csrf_token %}
+		{{ form }}
+		<label for="id">User Feedback:</label>
+		<textarea class="large-compact" name="feedback_entry" id="id" placeholder="Please enter and suggestions, improvements, errors, or bugs that could help improve Jingle! This feedback helps simplify and improve our development." maxlength="250"></textarea>
+		<input type="submit" value="Submit">
+	</form>
+	
+</html>
