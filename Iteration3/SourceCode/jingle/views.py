@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from .backend import master_results
+from .backend import spotifyxx
 from .forms import SearchForm,ResultsForm,FeedbackForm
 from django.views import View
 from django.views.generic.edit import FormView
@@ -104,11 +105,23 @@ def jinge_feedback(request):
     return render(request,'jingle/feedback.html')
 
 
-def jingle_about(request):
-    if request.method == 'POST':
-        form = FeedbackForm(request.POST)
-        if form.is_valid():
-            pass
-        return HttpResponseRedirect("/")
 
-    return render(request, 'jingle/about.html')
+def jinge_topfifty(request):
+
+    songfifty = spotifyxx.get_top_fifty()
+    
+    topfiftylist = []
+
+    j:int = 0
+
+    for i in songfifty:
+        topfiftylist.append(spotifyxx.spotify_results(songfifty[j]))
+        j+=1
+
+
+
+    context = {
+        'songs' : topfiftylist
+    }
+
+    return render(request,'jingle/top50.html',context)
