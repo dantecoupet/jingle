@@ -1,0 +1,24 @@
+/*Search Bar CSS*/
+input {
+	font-family: Tahoma, Geneva, sans-serif;
+	outline: none;
+	width:50px;
+	height:50px;
+	border-radius:50px;
+	border:none;
+	transition:ease 0.6s;
+	font-size:0px;
+	color:#fff;
+	background-image:url(magnifyingGlass.png);
+	background-size:24px 24px;
+	background-repeat:no-repeat;
+	background-position:14px 14px;
+}
+
+/* You can also use input:focus */
+input:hover{
+	font-size:1em;
+	width:350px;
+	padding:0px 20px 0px 45px;
+	color:#333;
+}
