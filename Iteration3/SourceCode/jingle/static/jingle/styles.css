@@ -1,0 +1,36 @@
+.custom-bg {
+    background-color: #FFE8E8;
+}
+
+table, th, td{
+                margin-top: 15px;
+                width: 55%;
+				border: 5px solid black;
+				padding: 15px;
+}
+
+img.a{
+    margin-top: 10px;
+    margin-left: 50px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    padding: 20px;
+    background-color: white;
+}
+
+.boxedA{
+    border: 1px solid black;
+    margin-left: 300px;
+    margin-right: 300px;
+    margin-top: 60px;
+}
+
+.boxedB{
+    border: 1px solid black;
+    margin-left: 50px;
+    margin-right: 1054px;
+}
+
+.containerRes  > *{
+    display: inline-block;
+}
