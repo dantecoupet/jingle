@@ -15,8 +15,6 @@ def get_youtube(song, artist):
 	search_url = 'https://www.googleapis.com/youtube/v3/search'
 	video_url = 'https://www.googleapis.com/youtube/v3/videos'
 	vid = requests.get(search_url, params=search_params)
-	if vid.json()['error'] != ():
-		return videos
 	results_v = vid.json()['items']
 
 	for result in results_v:
@@ -41,7 +39,6 @@ def get_youtube(song, artist):
 			}
 
 		videos.append(video_data)
-
+		
 	return videos
-
 

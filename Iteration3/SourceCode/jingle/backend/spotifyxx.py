@@ -3,6 +3,7 @@ import sys
 import spotipy
 import os
 import string
+import json
 
 
 ''' shows the albums and tracks for a given artist.
@@ -25,11 +26,11 @@ def spotify_results(name):
 		"album_name":"",
 		"song_cover_url":"",
 		"song_duration":"",
+		"spotify_id":"",
 		"artist_additional_names":"",
 		"release_date":"",
 		"spotify_song_link":"",
 		"genres":"",
-		"popularity":"",
 		"song_name_short":"",
 		"errors":""
 	}	
@@ -45,6 +46,7 @@ def spotify_results(name):
 	#processes name input, removes content inside paranthesis, removes puncuation
 	name = name.lower()
 	start = name.find( '(' )
+	tempName = ""
 	if start != -1:
 		tempName = tempName[0:start-1]
 	name = name.translate(str.maketrans('','',string.punctuation))
@@ -101,6 +103,7 @@ def spotify_results(name):
 	
 	#assigns more dictionary variables
 	spotifyDict["release_date"] = API_results["album"]["release_date"]
+	spotifyDict["spotify_id"] = API_results["id"]
 	spotifyDict["spotify_song_link"] = API_results["external_urls"]["spotify"]
 	
 	#this loop adds all the featured artists to dictionary in one string
@@ -133,8 +136,6 @@ def spotify_results(name):
 			spotifyDict["genres"] += ", "
 			spotifyDict["genres"] += i
 		tempInt += 1
-
-
 	
 	#returns dictionary of details
 	return spotifyDict
@@ -157,6 +158,7 @@ def spotify_top_search(name):
 	#processes name input, removes content inside paranthesis, removes puncuation
 	name = name.lower()
 	start = name.find( '(' )
+	tempName = ""
 	if start != -1:
 		tempName = tempName[0:start-1]
 	name = name.translate(str.maketrans('','',string.punctuation))
@@ -218,7 +220,6 @@ def return_song(spotify_id):
 	spotifyDict["album_name"] = track["album"]["name"]
 	spotifyDict["song_cover_url"] = track["album"]["images"][0]["url"]
 	spotifyDict["preview"] = track["preview_url"]
-	spotifyDict["popularity"] = track["popularity"]
 	
 	
 	#converts the duration in ms to hours, mins, and secs
@@ -290,3 +291,18 @@ def return_song(spotify_id):
 		
 	#returns dictionary of details
 	return spotifyDict
+
+def get_top_fifty():
+	sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
+	playlist = sp.playlist_tracks('spotify:playlist:37i9dQZEVXbMDoHDwVN2tF',fields = 'items.track.name',limit= 50, market="US")
+	topfiftysongs = []
+
+	for item in playlist['items']:
+		topfiftysongs.append(item['track']['name'])
+	
+
+	
+		
+
+	
+	return topfiftysongs
