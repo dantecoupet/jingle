@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	 
+	{% load static %}
+	<title>Error</title>
+		
+	<link rel="stylesheet" type="text/css" href="{% static 'jingle/navBar.css' %}">
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="">Top 50</a></li>
+		<li><a href="/feedback/">Feedback</a></li>
+		<li><a href="">About</a></li>
+	</ul>
+			
+	<link rel="stylesheet" type="text/css" href="{% static 'jingle/errorPage.css' %}">
+		
+	<div></div>
+	<div></div>
+	<div></div>
+
+	<header>Uh Oh! Something Went Wrong</header>	
+	
+	
+	<div></div>
+
+	<body>	
+	{% if songs.song_name != "" %}
+	{{ songs.errors }}
+	{% endif %}	
+	</body>
+	
+	
+</html>
