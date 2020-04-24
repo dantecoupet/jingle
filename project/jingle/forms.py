@@ -1,9 +1,10 @@
 from django import forms
 
-
 class SearchForm(forms.Form):
-    song = forms.CharField(label='song', max_length=100)
-
-
+	song = forms.CharField(label='song', max_length=100)
+	
 class ResultsForm(forms.Form):
-    spotify_id = forms.CharField(label='resultsSelection', max_length=100)
+	spotify_id = forms.CharField(label = 'resultsSelection', max_length = 100)
+
+class FeedbackForm(forms.Form):
+	feedback_entry = forms.CharField(widget=forms.Textarea)
