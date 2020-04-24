@@ -15,14 +15,22 @@ img.a{
     border: 1px solid #000;
     border-radius: 4px;
     padding: 20px;
+    background-color: white;
 }
 
-.boxed{
+.boxedA{
     border: 1px solid black;
     margin-left: 300px;
     margin-right: 300px;
+    margin-top: 60px;
 }
 
-.containerRes > *{
+.boxedB{
+    border: 1px solid black;
+    margin-left: 50px;
+    margin-right: 1054px;
+}
+
+.containerRes  > *{
     display: inline-block;
 }
