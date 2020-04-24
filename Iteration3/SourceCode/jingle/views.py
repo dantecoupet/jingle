@@ -9,7 +9,6 @@ from django.views.generic.edit import FormView
 from django.utils.dateformat import format
 import datetime
 import string
-import urllib.parse
 
 # Create your views here.
 
@@ -24,7 +23,8 @@ def jingle_home(request):
             song = form.cleaned_data.get('song')
         else:
             song = "blank"
-        song = urllib.parse.quote(song)
+        song = song.translate(str.maketrans('','',string.punctuation))
+        print(song)
         urlRedirect = "/results/" + song + "/"
         urlRedirect = urlRedirect.replace(" ","-")
         
@@ -51,7 +51,7 @@ def jingle_results(request,spotify_id):
     
 def jingle_top_search(request,song):
     
-    song = urllib.parse.unquote(song)
+    song = song.replace('-',' ')
     
     results_list = master_results.get_top_search(song)
     print(len(results_list))
@@ -81,7 +81,7 @@ def jingle_top_search(request,song):
         
     return render(request, 'jingle/top_results.html',context)
 
-def jinge_feedback(request):
+def jingle_feedback(request):
                 
     if request.method == 'POST':
         form = FeedbackForm(request.POST)
@@ -106,7 +106,7 @@ def jinge_feedback(request):
 
 
 
-def jinge_topfifty(request):
+def jingle_topfifty(request):
 
     songfifty = spotifyxx.get_top_fifty()
     
@@ -124,4 +124,7 @@ def jinge_topfifty(request):
         'songs' : topfiftylist
     }
 
-    return render(request,'jingle/top50.html',context)
+    return render(request,'jingle/top_results.html',context)
+
+def about_page(request):
+    return render(request,'jingle/about.html')
