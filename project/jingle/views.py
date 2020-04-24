@@ -102,3 +102,13 @@ def jinge_feedback(request):
         return HttpResponseRedirect("/")
         
     return render(request,'jingle/feedback.html')
+
+
+def jingle_about(request):
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            pass
+        return HttpResponseRedirect("/")
+
+    return render(request, 'jingle/about.html')
