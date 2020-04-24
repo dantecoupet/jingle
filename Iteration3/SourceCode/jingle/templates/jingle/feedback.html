@@ -1,27 +1,57 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html>
 
-	{% load static %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Feedback</title>
-	
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="{% static 'jingle/navBar.css' %}">
-		<ul>
-			<li><a href="/">Home</a></li>
-			<li><a href="/top_results/">Top 50</a></li>
-			<li><a href="/feedback/">Feedback</a></li>
-			<li><a href="">About</a></li>
-		</ul>
+		<link rel="stylesheet" type="text/css" href="{% static 'jingle/styles.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'jingle/feedback.css' %}">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	</head>
+	<body class="custom-bg">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<span class="navbar-brand" href="#">jingle</span>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+				<li class="nav-item active">
+					<a class="nav-link" href="/">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/top_results/">Top 50</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/about/">About</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/feedback/">Feedback<span class="sr-only">(current)</span></a>
+				</li>
+				</ul>
+			</div>
+		</nav>
 		
-	<link rel="stylesheet" type="text/css" href="{% static 'jingle/feedback.css' %}">
-	
-	<div></div>
+		<div class="container">
+			<div class="row text-center">
+				<div class="col-md-12">
+					<form method="post">
+						{% csrf_token %}
+						{{ form }}
+						<label for="id">User Feedback:</label>
+						<textarea class="large-compact" name="feedback_entry" id="id" placeholder="Please enter and suggestions, improvements, errors, or bugs that could help improve Jingle! This feedback helps simplify and improve our development." maxlength="250"></textarea>
+						<input type="submit" value="Submit">
+					</form>
+				</div>
+			</div>
+		</div>
 
-	<form method="post">
-		{% csrf_token %}
-		{{ form }}
-		<label for="id">User Feedback:</label>
-		<textarea class="large-compact" name="feedback_entry" id="id" placeholder="Please enter and suggestions, improvements, errors, or bugs that could help improve Jingle! This feedback helps simplify and improve our development." maxlength="250"></textarea>
-		<input type="submit" value="Submit">
-	</form>
-	
+	</body>
 </html>
