@@ -25,7 +25,7 @@ def jingle_home(request):
         else:
             song = "blank"
         song = urllib.parse.quote(song)
-        urlRedirect = urlRedirect.replace(" ","-")
+        urlRedirect = "/results/" + song + "/"
         
         return HttpResponseRedirect(urlRedirect)
     
