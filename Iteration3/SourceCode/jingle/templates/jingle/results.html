@@ -13,7 +13,7 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'jingle/styles.css' %}">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	</head>
-	<body class="custom-bg">
+	<body class="custom-bg" style="color: black;">
 		<!--[if lt IE 7]>
 			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
 		<![endif]-->
@@ -109,7 +109,7 @@
 			<hr style="height:0px; border:2px solid #000;">
 			<center>
 			{% if song.lyrics != "" %}
-			<p style="clear:left"><strong>Lyrics:</strong> {{ song.lyrics|linebreaks }}</p>
+			<p style="clear:left; color: solid black; font-size:150%;"><strong>Lyrics:</strong> {{ song.lyrics|linebreaks }}</p>
 			{% endif %}
 			{% if song.errors != "" %}
 			<h1>Error: {{ song.errors }}</h1>
@@ -121,7 +121,7 @@
 			<div class="container">
 				<div class="row text-center">
 					<div class="col-md-12 col-xs-12">
-						<h1><strong>RELATED VIDEOS</strong></h1>
+						<h1 style = "color : black"><strong>RELATED VIDEOS</strong></h1>
 					</div>
 				</div>
 			</div>
