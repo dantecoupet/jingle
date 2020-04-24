@@ -1,0 +1,15 @@
+div.result-row:hover {
+    width: 100%;
+	background-color: #FFD6D7;
+	transition: all 1s;
+}
+
+.result-row {
+    width: 80%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.result-img {
+	margin: 10px;
+}
