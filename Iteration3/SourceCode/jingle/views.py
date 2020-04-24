@@ -24,7 +24,6 @@ def jingle_home(request):
             song = form.cleaned_data.get('song')
         else:
             song = "blank"
-        song = song.translate(str.maketrans('','',string.punctuation))
         song = urllib.parse.quote(song)
         urlRedirect = urlRedirect.replace(" ","-")
         
