@@ -31,6 +31,7 @@ def spotify_results(name):
 		"release_date":"",
 		"spotify_song_link":"",
 		"genres":"",
+		"popularity":"",
 		"song_name_short":"",
 		"errors":""
 	}	
@@ -220,6 +221,7 @@ def return_song(spotify_id):
 	spotifyDict["album_name"] = track["album"]["name"]
 	spotifyDict["song_cover_url"] = track["album"]["images"][0]["url"]
 	spotifyDict["preview"] = track["preview_url"]
+	spotifyDict["popularity"] = track["popularity"]
 	
 	
 	#converts the duration in ms to hours, mins, and secs
