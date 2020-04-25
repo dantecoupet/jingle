@@ -36,3 +36,8 @@ img.a{
 .containerRes  > *{
     display: inline-block;
 }
+
+.large-compact {
+    width: 350px;
+    height: 150px;
+}
