@@ -55,7 +55,11 @@
 					</div>
 					<div class="col-md-4 col-xs-4 text-center">
 						{% if song.song_name != "" %}
-						<h4>{{ song.song_name }}</h4>
+						<h4>{{ song.song_name }}
+							{% if song.explicit is True %}
+								(Explicit)
+							{% endif %}
+						</h4>
 						{% endif %}
 					</div>
 				</div>

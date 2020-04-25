@@ -15,7 +15,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="{% static 'jingle/navBar.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'jingle/styles.css' %}">
-		<link rel="stylesheet" type="text/css" href="{% static 'jingle/feedback.css' %}">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	</head>
 	<body class="custom-bg">
@@ -38,6 +37,10 @@
 				</ul>
 			</div>
 		</nav>
+
+		<br>
+		<br>
+		<br>
 		
 		<div class="container">
 			<div class="row text-center">
@@ -45,8 +48,8 @@
 					<form method="post">
 						{% csrf_token %}
 						{{ form }}
-						<label for="id">User Feedback:</label>
-						<textarea class="large-compact" name="feedback_entry" id="id" placeholder="Please enter and suggestions, improvements, errors, or bugs that could help improve Jingle! This feedback helps simplify and improve our development." maxlength="250"></textarea>
+						<label for="id">User Feedback:</label><br>
+						<textarea class="large-compact" name="feedback_entry" id="id" placeholder="Please enter and suggestions, improvements, errors, or bugs that could help improve Jingle! This feedback helps simplify and improve our development." maxlength="250"></textarea><br>
 						<input type="submit" value="Submit">
 					</form>
 				</div>

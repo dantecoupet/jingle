@@ -38,6 +38,8 @@
 			</div>
 		</nav>
 
+		
+
 			<center>
 			{% if song.song_cover_url != "" %}
 			<img class="a" src="{{ song.song_cover_url }}" height="480" width="480" style="float:left">
@@ -51,7 +53,8 @@
 				<tr><td><strong>Artist</strong></td><td>{{ song.artist_name }}</td></tr>
 				{% endif %}
 				{% if song.song_name != "" %}
-				<tr><td><strong>Song</strong></td><td>{{ song.song_name }}</td></tr>
+				<tr><td><strong>Song</strong></td><td>{{ song.song_name }}
+				</td></tr>
 				{% endif %}
 				</div>
 				{% if song.album_name != "" %}
